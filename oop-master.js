@@ -103,3 +103,100 @@ let myMachine = new CoffeeMachine();
 console.log(myMachine.pressstartbutton());
 
 //polymorphism
+
+class Bird {
+  fly() {
+    return `Flying......`;
+  }
+}
+
+class Penguin extends Bird {
+  fly() {
+    return `Penguin cant fly`;
+  }
+}
+
+let bird = new Bird();
+let penguin = new Penguin();
+console.log(bird.fly());
+console.log(penguin.fly());
+
+//static methods:
+
+class Calculator {
+  static add(a, b) {
+    return a + b;
+  }
+}
+
+let miniCalc = new Calculator();
+console.log(Calculator.add(2, 3));
+
+//getters and setters
+class Employee {
+  #salary;
+  constructor(name, salary) {
+    if (salary < 0) {
+      throw new Error("Salary cannot be negative");
+    }
+    this.name = name;
+    this.#salary = salary;
+  }
+
+  get salary() {
+    return `You are not allowed to see salary`;
+  }
+
+  set salary(value) {
+    if (value < 0) {
+      console.error("Invalid Salary");
+    } else {
+      this._salary = value;
+    }
+  }
+}
+
+let alice = new Employee("Pragalv", 10000000000000);
+console.log(alice._salary);
+
+alice.salary = 40000;
+
+//getters / setters bro code:
+
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  set width(newwidth) {
+    if (newwidth > 0) {
+      this._width = newwidth;
+    } else {
+      console.error("width must be a positive value");
+    }
+  }
+
+  set height(newheight) {
+    if (newheight > 0) {
+      this._height = newheight;
+    } else {
+      console.error("height must be a positive value");
+    }
+  }
+
+  get height() {
+    return this._height;
+  }
+
+  get width() {
+    return this._width;
+  }
+}
+
+const rectangle = new Rectangle(3, 4);
+
+rectangle.width = 5;
+rectangle.height = 4;
+console.log(rectangle.width);
+console.log(rectangle.height);
